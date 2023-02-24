@@ -3,6 +3,7 @@ services:
   api:
     build:
       context: ./api
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s node index.js
     volumes:
       - /app/node_modules
       - ./api:/app
@@ -24,6 +25,7 @@ services:
     restart: always
   nginx:
     depends_on:
+      - db
       - api
     restart: always
     build:
