@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./api
+    volumes:
+      - /app/node_modules
+      - ./api:/app
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: mysql
+    ports:
+      - 3306
+    volumes:
+      - ./db/mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+  nginx:
+    depends_on:
+      - api
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "8081:80"
