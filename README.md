@@ -4,4 +4,6 @@ Desafio consiste em "dockerizar" uma aplicação Node - Mysql - Nginx
 
 Execute o comando "docker-compose up"
 
-Acesse localhos
+Acesse http://localhost:8081/
+
+Você poderá ver a listagem de pessoas
