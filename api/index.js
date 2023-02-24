@@ -2,16 +2,16 @@ const express = require("express");
 const app = express();
 var mysql = require("mysql");
 
+var connection = mysql.createConnection({
+  host: "db",
+  user: "root",
+  password: "root",
+  database: "db",
+});
+
+connection.connect();
+
 app.get("/", async (req, res) => {
-  var connection = mysql.createConnection({
-    host: "db",
-    user: "root",
-    password: "root",
-    database: "db",
-  });
-
-  connection.connect();
-
   let pessoas_lista = "<ul>";
 
   connection.query("SELECT * FROM pessoas", function (error, results, fields) {
