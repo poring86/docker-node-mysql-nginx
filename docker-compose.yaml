@@ -13,14 +13,13 @@ services:
   db:
     image: mysql
     ports:
-      - 3306
+      - 3306:3306
     volumes:
       - ./db/mysql-data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     tty: true
     environment:
       MYSQL_DATABASE: db
-      MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
     restart: always
@@ -33,4 +32,4 @@ services:
     build:
       context: ./nginx
     ports:
-      - "8080:80"
+      - "8081:80"
